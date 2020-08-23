@@ -1,0 +1,192 @@
+{
+  "name": "marky-edit",
+  "displayName": "Marky Edit",
+  "publisher": "robole",
+  "author": {
+    "name": "Rob O'Leary"
+  },
+  "description": "Toggle-style editing for Markdown.",
+  "icon": "img/logo.png",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.0.0",
+    "node": ">=12.0.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "galleryBanner": {
+    "color": "#ffef01",
+    "theme": "light"
+  },
+  "keywords": [
+    "markdown",
+    "markdown editor",
+    "editor",
+    "shortcuts",
+    "keybindings",
+    "snippets",
+    "markdown snippets",
+    "markdown shortcuts"
+  ],
+  "bugs": {
+    "url": "https://github.com/robole/vscode-marky-edit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robole/vscode-marky-edit"
+  },
+  "license": "MIT",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "marky-edit.toggleStrongEmphasis",
+        "title": "Marky Edit: Toggle Strong Emphasis (Bold)",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleEmphasis",
+        "title": "Marky Edit: Toggle Emphasis (Italic)",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleQuote",
+        "title": "Marky Edit: Toggle Quote",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleInlineCode",
+        "title": "Marky Edit: Toggle Inline Code",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleCodeBlock",
+        "title": "Marky Edit: Toggle Fenced Code Block",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHeading1",
+        "title": "Marky Edit: Toggle Heading 1",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHeading2",
+        "title": "Marky Edit: Toggle Heading 2",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHeading3",
+        "title": "Marky Edit: Toggle Heading 3",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHeading4",
+        "title": "Marky Edit: Toggle Heading 4",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHeading5",
+        "title": "Marky Edit: Toggle Heading 5",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHeading6",
+        "title": "Marky Edit: Toggle Heading 6",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleOrderedList",
+        "title": "Marky Edit: Toggle Ordered List (Bulleted List)",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleUnorderedList",
+        "title": "Marky Edit: Toggle Unordered List (Numbered List)",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleLink",
+        "title": "Marky Edit: Toggle Link",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleImage",
+        "title": "Marky Edit: Toggle Image",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleHorizontalRule",
+        "title": "Marky Edit: Toggle Horizontal Rule",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "command": "marky-edit.toggleDelete",
+        "title": "Marky Edit: Toggle Delete (Strikethrough)",
+        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Marky Edit",
+      "properties": {
+        "markyMarkdown.edit.emphasisCharacter": {
+          "type": "string",
+          "default": "*",
+          "description": "Select the character used to specify emphasis (italic) and strong emphasis (bold).",
+          "enum": [
+            "*",
+            "_"
+          ]
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "command": "marky-edit.toggleStrongEmphasis",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+      },
+      {
+        "key": "ctrl+i",
+        "mac": "cmd+i",
+        "command": "marky-edit.toggleEmphasis",
+        "when": "editorTextFocus && !editorReadonly &&editorLangId == markdown"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "format": "npx prettier --write .",
+    "test": "node ./test/runTest.js",
+    "webpack": "webpack --mode development --watch",
+    "vscode:prepublish": "webpack --mode production",
+    "build": "vsce package ."
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
+    "@types/vscode": "^1.0.0",
+    "chai": "^4.2.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-roboleary-node": "0.0.2",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-node": "^11.1.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.1.2",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3",
+    "vsce": "^1.77.0",
+    "vscode-test": "^1.3.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
