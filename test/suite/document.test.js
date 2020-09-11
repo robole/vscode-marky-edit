@@ -17,7 +17,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleQuote",
+          "marky-edit.toggleQuote",
           lines,
           selection,
           expectedLines,
@@ -44,7 +44,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleQuote",
+          "marky-edit.toggleQuote",
           lines,
           selection,
           expectedLines,
@@ -61,7 +61,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleQuote",
+          "marky-edit.toggleQuote",
           lines,
           selection,
           expectedLines,
@@ -78,7 +78,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleQuote",
+          "marky-edit.toggleQuote",
           lines,
           selection,
           expectedLines,
@@ -95,7 +95,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleQuote",
+          "marky-edit.toggleQuote",
           lines,
           selection,
           expectedLines,
@@ -113,11 +113,30 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 8, 0, 8);
       util
         .testCommand(
-          "marky-shortcuts.toggleStrongEmphasis",
+          "marky-edit.toggleStrongEmphasis",
           lines,
           selection,
           expectedLines,
           expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should make the selected text bold with the emphasis character specified in the config", (done) => {
+      let lines = ["blah blah"];
+      let expectedLines = ["__blah__ blah"];
+      let selection = new vscode.Selection(0, 0, 0, 4);
+      let expectedSelection = new vscode.Selection(0, 8, 0, 8);
+      let config = { "markyMarkdown.edit.emphasisCharacter": "_" };
+
+      util
+        .testCommand(
+          "marky-edit.toggleStrongEmphasis",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection,
+          config
         )
         .then(done, done);
     });
@@ -130,7 +149,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrongEmphasis",
+          "marky-edit.toggleStrongEmphasis",
           lines,
           selection,
           expectedLines,
@@ -146,7 +165,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 8, 0, 8);
       util
         .testCommand(
-          "marky-shortcuts.toggleStrongEmphasis",
+          "marky-edit.toggleStrongEmphasis",
           lines,
           selection,
           expectedLines,
@@ -163,7 +182,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrongEmphasis",
+          "marky-edit.toggleStrongEmphasis",
           lines,
           selection,
           expectedLines,
@@ -180,11 +199,30 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrongEmphasis",
+          "marky-edit.toggleStrongEmphasis",
           lines,
           selection,
           expectedLines,
           expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should remove bold for a word when no selection is made but the cursor is positioned in a emboldened word based on the emphasis character specified in the config", (done) => {
+      let lines = ["__blah__ blah"];
+      let expectedLines = ["blah blah"];
+      let selection = new vscode.Selection(0, 0, 0, 0);
+      let expectedSelection = new vscode.Selection(0, 0, 0, 0);
+      let config = { "markyMarkdown.edit.emphasisCharacter": "_" };
+
+      util
+        .testCommand(
+          "marky-edit.toggleStrongEmphasis",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection,
+          config
         )
         .then(done, done);
     });
@@ -199,11 +237,30 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleEmphasis",
+          "marky-edit.toggleEmphasis",
           lines,
           selection,
           expectedLines,
           expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should make the selected text italic with the emphasis character specified in the config", (done) => {
+      let lines = ["dyah dyah"];
+      let expectedLines = ["_dy_ah dyah"];
+      let selection = new vscode.Selection(0, 0, 0, 2);
+      let expectedSelection = new vscode.Selection(0, 4, 0, 4);
+      let config = { "markyMarkdown.edit.emphasisCharacter": "_" };
+
+      util
+        .testCommand(
+          "marky-edit.toggleEmphasis",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection,
+          config
         )
         .then(done, done);
     });
@@ -216,7 +273,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleEmphasis",
+          "marky-edit.toggleEmphasis",
           lines,
           selection,
           expectedLines,
@@ -233,7 +290,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleEmphasis",
+          "marky-edit.toggleEmphasis",
           lines,
           selection,
           expectedLines,
@@ -241,19 +298,39 @@ describe("document", function () {
         )
         .then(done, done);
     });
+
     it("should remove italic from selected text", (done) => {
-      let lines = ["*dy*ah dyah"];
+      let lines = ["*dyah* dyah"];
       let expectedLines = ["dyah dyah"];
-      let selection = new vscode.Selection(0, 0, 0, 4);
-      let expectedSelection = new vscode.Selection(0, 0, 0, 2);
+      let selection = new vscode.Selection(0, 0, 0, 6);
+      let expectedSelection = new vscode.Selection(0, 0, 0, 4);
 
       util
         .testCommand(
-          "marky-shortcuts.toggleEmphasis",
+          "marky-edit.toggleEmphasis",
           lines,
           selection,
           expectedLines,
           expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should remove italic from selected text using the emphasis character specified in the config", (done) => {
+      let lines = ["_dyah_ dyah"];
+      let expectedLines = ["dyah dyah"];
+      let selection = new vscode.Selection(0, 0, 0, 6);
+      let expectedSelection = new vscode.Selection(0, 0, 0, 4);
+      let config = { "markyMarkdown.edit.emphasisCharacter": "_" };
+
+      util
+        .testCommand(
+          "marky-edit.toggleEmphasis",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection,
+          config
         )
         .then(done, done);
     });
@@ -266,7 +343,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleEmphasis",
+          "marky-edit.toggleEmphasis",
           lines,
           selection,
           expectedLines,
@@ -285,7 +362,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrikethrough",
+          "marky-edit.toggleDelete",
           lines,
           selection,
           expectedLines,
@@ -302,7 +379,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrikethrough",
+          "marky-edit.toggleDelete",
           lines,
           selection,
           expectedLines,
@@ -319,7 +396,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrikethrough",
+          "marky-edit.toggleDelete",
           lines,
           selection,
           expectedLines,
@@ -335,7 +412,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrikethrough",
+          "marky-edit.toggleDelete",
           lines,
           selection,
           expectedLines,
@@ -352,7 +429,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleStrikethrough",
+          "marky-edit.toggleDelete",
           lines,
           selection,
           expectedLines,
@@ -370,7 +447,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 11);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading1",
+          "marky-edit.toggleHeading1",
           lines,
           selection,
           expectedLines,
@@ -386,7 +463,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 0);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading1",
+          "marky-edit.toggleHeading1",
           lines,
           selection,
           expectedLines,
@@ -402,7 +479,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 12);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading2",
+          "marky-edit.toggleHeading2",
           lines,
           selection,
           expectedLines,
@@ -418,7 +495,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 13);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading3",
+          "marky-edit.toggleHeading3",
           lines,
           selection,
           expectedLines,
@@ -434,7 +511,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 14);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading4",
+          "marky-edit.toggleHeading4",
           lines,
           selection,
           expectedLines,
@@ -450,7 +527,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 15);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading5",
+          "marky-edit.toggleHeading5",
           lines,
           selection,
           expectedLines,
@@ -466,7 +543,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 16);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading6",
+          "marky-edit.toggleHeading6",
           lines,
           selection,
           expectedLines,
@@ -482,7 +559,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 9);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading6",
+          "marky-edit.toggleHeading6",
           lines,
           selection,
           expectedLines,
@@ -498,7 +575,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 0);
       util
         .testCommand(
-          "marky-shortcuts.toggleHeading6",
+          "marky-edit.toggleHeading6",
           lines,
           selection,
           expectedLines,
@@ -516,7 +593,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 6, 0, 10);
       util
         .testCommand(
-          "marky-shortcuts.toggleLink",
+          "marky-edit.toggleLink",
           lines,
           selection,
           expectedLines,
@@ -532,7 +609,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 6, 0, 10);
       util
         .testCommand(
-          "marky-shortcuts.toggleLink",
+          "marky-edit.toggleLink",
           lines,
           selection,
           expectedLines,
@@ -548,7 +625,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 1, 0, 5);
       util
         .testCommand(
-          "marky-shortcuts.toggleLink",
+          "marky-edit.toggleLink",
           lines,
           selection,
           expectedLines,
@@ -564,7 +641,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 4);
       util
         .testCommand(
-          "marky-shortcuts.toggleLink",
+          "marky-edit.toggleLink",
           lines,
           selection,
           expectedLines,
@@ -582,7 +659,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 7, 0, 11);
       util
         .testCommand(
-          "marky-shortcuts.toggleImage",
+          "marky-edit.toggleImage",
           lines,
           selection,
           expectedLines,
@@ -598,7 +675,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 7, 0, 11);
       util
         .testCommand(
-          "marky-shortcuts.toggleImage",
+          "marky-edit.toggleImage",
           lines,
           selection,
           expectedLines,
@@ -614,7 +691,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 2, 0, 6);
       util
         .testCommand(
-          "marky-shortcuts.toggleImage",
+          "marky-edit.toggleImage",
           lines,
           selection,
           expectedLines,
@@ -630,7 +707,7 @@ describe("document", function () {
       let expectedSelection = new vscode.Selection(0, 0, 0, 4);
       util
         .testCommand(
-          "marky-shortcuts.toggleImage",
+          "marky-edit.toggleImage",
           lines,
           selection,
           expectedLines,
@@ -649,7 +726,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleInlineCode",
+          "marky-edit.toggleInlineCode",
           lines,
           selection,
           expectedLines,
@@ -666,7 +743,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleInlineCode",
+          "marky-edit.toggleInlineCode",
           lines,
           selection,
           expectedLines,
@@ -683,7 +760,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleInlineCode",
+          "marky-edit.toggleInlineCode",
           lines,
           selection,
           expectedLines,
@@ -700,7 +777,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleInlineCode",
+          "marky-edit.toggleInlineCode",
           lines,
           selection,
           expectedLines,
@@ -717,7 +794,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleInlineCode",
+          "marky-edit.toggleInlineCode",
           lines,
           selection,
           expectedLines,
@@ -741,7 +818,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleCodeBlock",
+          "marky-edit.toggleCodeBlock",
           lines,
           selection,
           expectedLines,
@@ -758,7 +835,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleCodeBlock",
+          "marky-edit.toggleCodeBlock",
           lines,
           selection,
           expectedLines,
@@ -775,7 +852,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleCodeBlock",
+          "marky-edit.toggleCodeBlock",
           lines,
           selection,
           expectedLines,
@@ -798,7 +875,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleCodeBlock",
+          "marky-edit.toggleCodeBlock",
           lines,
           selection,
           expectedLines,
@@ -817,7 +894,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleHorizontalRule",
+          "marky-edit.toggleHorizontalRule",
           lines,
           selection,
           expectedLines,
@@ -839,7 +916,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleHorizontalRule",
+          "marky-edit.toggleHorizontalRule",
           lines,
           selection,
           expectedLines,
@@ -856,7 +933,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleHorizontalRule",
+          "marky-edit.toggleHorizontalRule",
           lines,
           selection,
           expectedLines,
@@ -873,7 +950,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleHorizontalRule",
+          "marky-edit.toggleHorizontalRule",
           lines,
           selection,
           expectedLines,
@@ -892,11 +969,47 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleUnorderedList",
+          "marky-edit.toggleUnorderedList",
           lines,
           selection,
           expectedLines,
           expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should not make the selected text an unordered list if it is a thematic break (horizontal rule)", (done) => {
+      let lines = ["- - -"];
+      let expectedLines = ["- - -"];
+      let selection = new vscode.Selection(0, 0, 0, 5);
+      let expectedSelection = new vscode.Selection(0, 0, 0, 5);
+
+      util
+        .testCommand(
+          "marky-edit.toggleUnorderedList",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should make the selected text an unordered list with the list character specified in the configuration", (done) => {
+      let lines = ["boo"];
+      let expectedLines = ["+ boo"];
+      let selection = new vscode.Selection(0, 0, 0, 3);
+      let expectedSelection = new vscode.Selection(0, 0, 0, 5);
+      let config = { "markyMarkdown.edit.unorderedListCharacter": "+" };
+
+      util
+        .testCommand(
+          "marky-edit.toggleUnorderedList",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection,
+          config
         )
         .then(done, done);
     });
@@ -909,7 +1022,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleUnorderedList",
+          "marky-edit.toggleUnorderedList",
           lines,
           selection,
           expectedLines,
@@ -918,15 +1031,15 @@ describe("document", function () {
         .then(done, done);
     });
 
-    it("should insert an unordered list snippet when no selection and the current line is empty", (done) => {
+    it("should insert an unordered list snippet when there is no selection and the current line is empty", (done) => {
       let lines = [""];
       let expectedLines = ["- "];
       let selection = new vscode.Selection(0, 0, 0, 0);
-      let expectedSelection = new vscode.Selection(0, 0, 0, 2);
+      let expectedSelection = new vscode.Selection(0, 2, 0, 2);
 
       util
         .testCommand(
-          "marky-shortcuts.toggleUnorderedList",
+          "marky-edit.toggleUnorderedList",
           lines,
           selection,
           expectedLines,
@@ -943,7 +1056,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleUnorderedList",
+          "marky-edit.toggleUnorderedList",
           lines,
           selection,
           expectedLines,
@@ -960,7 +1073,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleUnorderedList",
+          "marky-edit.toggleUnorderedList",
           lines,
           selection,
           expectedLines,
@@ -977,11 +1090,30 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleUnorderedList",
+          "marky-edit.toggleUnorderedList",
           lines,
           selection,
           expectedLines,
           expectedSelection
+        )
+        .then(done, done);
+    });
+
+    it("should remove an unordered list based on the configured list character from a multi-line selection leaving the text", (done) => {
+      let lines = ["+ item 1", "+ item 2", "text after"];
+      let expectedLines = ["item 1", "item 2", "text after"];
+      let selection = new vscode.Selection(0, 0, 1, 7);
+      let expectedSelection = new vscode.Selection(0, 0, 1, 5);
+      let config = { "markyMarkdown.edit.unorderedListCharacter": "+" };
+
+      util
+        .testCommand(
+          "marky-edit.toggleUnorderedList",
+          lines,
+          selection,
+          expectedLines,
+          expectedSelection,
+          config
         )
         .then(done, done);
     });
@@ -996,7 +1128,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleOrderedList",
+          "marky-edit.toggleOrderedList",
           lines,
           selection,
           expectedLines,
@@ -1013,7 +1145,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleOrderedList",
+          "marky-edit.toggleOrderedList",
           lines,
           selection,
           expectedLines,
@@ -1026,11 +1158,11 @@ describe("document", function () {
       let lines = [""];
       let expectedLines = ["1. "];
       let selection = new vscode.Selection(0, 0, 0, 0);
-      let expectedSelection = new vscode.Selection(0, 0, 0, 3);
+      let expectedSelection = new vscode.Selection(0, 3, 0, 3);
 
       util
         .testCommand(
-          "marky-shortcuts.toggleOrderedList",
+          "marky-edit.toggleOrderedList",
           lines,
           selection,
           expectedLines,
@@ -1047,7 +1179,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleOrderedList",
+          "marky-edit.toggleOrderedList",
           lines,
           selection,
           expectedLines,
@@ -1064,7 +1196,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleOrderedList",
+          "marky-edit.toggleOrderedList",
           lines,
           selection,
           expectedLines,
@@ -1081,7 +1213,7 @@ describe("document", function () {
 
       util
         .testCommand(
-          "marky-shortcuts.toggleOrderedList",
+          "marky-edit.toggleOrderedList",
           lines,
           selection,
           expectedLines,

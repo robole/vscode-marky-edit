@@ -7,7 +7,7 @@
   },
   "description": "Toggle-style editing for Markdown.",
   "icon": "img/logo.png",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.0.0",
     "node": ">=12.0.0"
@@ -100,12 +100,12 @@
       },
       {
         "command": "marky-edit.toggleOrderedList",
-        "title": "Marky Edit: Toggle Ordered List (Bulleted List)",
+        "title": "Marky Edit: Toggle Ordered List (Numbered List)",
         "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleUnorderedList",
-        "title": "Marky Edit: Toggle Unordered List (Numbered List)",
+        "title": "Marky Edit: Toggle Unordered List (Bulleted List)",
         "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
       },
       {
@@ -120,7 +120,7 @@
       },
       {
         "command": "marky-edit.toggleHorizontalRule",
-        "title": "Marky Edit: Toggle Horizontal Rule",
+        "title": "Marky Edit: Toggle Thematic Break (Horizontal Rule)",
         "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
       },
       {
@@ -140,6 +140,16 @@
           "enum": [
             "*",
             "_"
+          ]
+        },
+        "markyMarkdown.edit.unorderedListCharacter": {
+          "type": "string",
+          "default": "-",
+          "description": "Select the character used to specify an unordered list (bulleted list).",
+          "enum": [
+            "-",
+            "+",
+            "*"
           ]
         }
       }

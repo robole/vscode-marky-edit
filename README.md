@@ -2,7 +2,7 @@
 
 ![Extension file size in bytes](https://img.shields.io/static/v1?logo=visual-studio-code&label=made%20for&message=VS%20Code&color=0000ff)
 ![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/robole.marky-edit?logo=visual-studio-code&color=ffa500)
-![Extension file size in bytes](https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=23KB&color=008000)
+![Extension file size in bytes](https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=25KB&color=008000)
 ![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/robole.marky-edit?logo=visual-studio-code&color=yellow)
 ![Built with](https://img.shields.io/static/v1?label=built%20with&message=good%20vibrations%20%26%20javascript&color=violet)
 
@@ -41,18 +41,18 @@ The commands in the table below can be run from the Command Palette (`Ctrl+Shift
 | marky-edit.toggleHeading4       | Marky Edit: Toggle Heading 4                      |
 | marky-edit.toggleHeading5       | Marky Edit: Toggle Heading 5                      |
 | marky-edit.toggleHeading6       | Marky Edit: Toggle Heading 6                      |
-| marky-edit.toggleHorizontalRule | Marky Edit: Toggle Horizontal Rule                |
+| marky-edit.toggleHorizontalRule | Marky Edit: Toggle Thematic Break (Horizontal Rule)                |
 | marky-edit.toggleImage          | Marky Edit: Toggle Image                          |
 | marky-edit.toggleInlineCode     | Marky Edit: Toggle Inline Code                    |
 | marky-edit.toggleLink           | Marky Edit: Toggle Link                           |
-| marky-edit.toggleOrderedList    | Marky Edit: Toggle Ordered List (Bulleted List)   |
+| marky-edit.toggleOrderedList    | Marky Edit: Toggle Ordered List (Numbered List)   |
 | marky-edit.toggleQuote          | Marky Edit: Toggle Quote                          |
 | marky-edit.toggleStrongEmphasis | Marky Edit: Toggle Strong Emphasis (Bold)         |
-| marky-edit.toggleUnorderedList  | Marky Edit: Toggle Unordered List (Numbered List) |
+| marky-edit.toggleUnorderedList  | Marky Edit: Toggle Unordered List (Bulleted List) |
 
 ### Inline Commands
 
-The table and GIF below demonstrate the change of state for the command `marky-edit.toggleStrongEmphasis` for different scenarios. This pattern of behaviour followed by all inline commands.
+The table and GIF below demonstrate the command `marky-edit.toggleStrongEmphasis` for different scenarios. This pattern of behaviour is followed by all inline commands.
 
 ![Strong empahsis demo](/img/screenshots/strong-emphasis.gif)
 
@@ -67,10 +67,10 @@ The inline markdown commands are:
 - `marky-edit.toggleLink`
 
 There are 2 points worth noting:
-1. If there is no selection, it will insert a snippet, which enables you to navigate through the entry with tabstops (see item 2 in table). This enables you to create a strongly emphasized word (or phrase) without having to type the word first, select it, and apply the markdown edit.
+1. If there is no selection, it will insert a snippet. This enables you to navigate through the entry with tabstops (see item 2 in table), so that you can create a strongly emphasized word (or phrase) without making a selection or backtracking.
 1. If there is no selection but it is within the boundary of a word, it will perform the edit command on that word (see item 3 and 5 in the table).
 
-There is *one exception* to this, for the commands `marky-edit.toggleLink` and `marky-edit.toggleImage`, when you want to remove the markdown you have to make a complete selection like item 5 in the table. Item 4 in the table does *not* apply to these commands. It is more likely that you would delete them rather than remove the markdown!
+There is *one exception* to this, for the commands `marky-edit.toggleLink` and `marky-edit.toggleImage`, when you want to remove the markdown you have to make a complete selection like item 5 in the table. Item 4 in the table does *not* apply to these commands. It is more likely that you would delete the entire text fragment, rather than just remove the markdown!
 
 ### Line Commands
 
@@ -109,9 +109,9 @@ I chose only to add shortcuts for emphasis and strong emphasis. I don't think it
 | marky-edit.toggleEmphasis       | Mac: `Cmd + I` <br> Windows: `Ctrl + I`<br>Linux: `Ctrl + I`| editorTextFocus && !editorReadonly && editorLangId ==   markdown |
 | marky-edit.toggleStrongEmphasis | Mac: `Cmd + B` <br> Windows: `Ctrl + B`<br> Linux: `Ctrl + B` | editorTextFocus && !editorReadonly && editorLangId ==   markdown |
 
-If you want to add more shortcuts for the extension commands, you can open the JSON file for Keyboard Shortcuts (by searching `Preferences: Open Keyboard Shortcuts (JSON)` in the Command Palette), and add them in. The Keyboard Shortcuts UI only allows editing of existing shortcuts. 😕
+If you want to add more shortcuts for the extension commands, you can open the JSON file for Keyboard Shortcuts (by searching for `Preferences: Open Keyboard Shortcuts (JSON)` in the Command Palette), and add them in. The Keyboard Shortcuts UI only allows editing of existing shortcuts. 😕
 
-The object format is as below:
+To add a shortcut, add an object like below:
 
 ```JSON
 {
@@ -126,7 +126,6 @@ I recommend using the same *when* clause as above. The *key* property creates a 
 
 ## Features Under Consideration
 
-1. Add settings for picking the markdown character preferences for emphasis, strong emphasis, and unordered list.
 1. Update the "word pattern", which identifies what is a considered a word for syntax highlighting and selection.
 1. Add text decoration for strong emphasis, and delete.
 1. Add extended syntax support for tables and task lists.

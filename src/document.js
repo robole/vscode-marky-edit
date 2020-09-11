@@ -1,6 +1,9 @@
+/* eslint-disable prefer-template */
 /* eslint-disable no-template-curly-in-string */
 // eslint-disable-next-line import/no-unresolved, node/no-missing-require
 const vscode = require("vscode");
+const config = require("./config");
+const markdown = require("./markdown");
 
 function getWordRange(wordPattern) {
   const editor = vscode.window.activeTextEditor;
@@ -48,28 +51,37 @@ function getEndOfLine() {
 
 async function toggleEmphasis() {
   const editor = vscode.window.activeTextEditor;
-  const wordRegex = /\**\w+\**/;
+  const markdownChar = config.getEmphasisCharacter();
+
+  let wordRegex = /\**\w+\**/;
+  if (markdownChar === "_") {
+    wordRegex = /_*\w+_*/;
+  }
   const range = getWordRange(wordRegex);
+
   const text = editor.document.getText(range);
-  const markedDown = /^\*.*\*$/.test(text);
+  let regexString = /^\*.*\*$/;
+  if (markdownChar === "_") {
+    regexString = /^_.*_$/;
+  }
+  const markedDown = regexString.test(text);
 
   if (markedDown === true) {
     await removeEmphasis(range);
   } else {
-    await addEmphasis(range);
+    await addEmphasis(markdownChar, range);
   }
 }
 
-async function addEmphasis(range) {
+async function addEmphasis(markdownChar, range) {
   const editor = vscode.window.activeTextEditor;
 
   if (range.isEmpty) {
-    await editor.insertSnippet(new vscode.SnippetString("*$1*$0"), range);
+    let snippet = markdownChar + "$1" + markdownChar + "$0";
+    await editor.insertSnippet(new vscode.SnippetString(snippet), range);
   } else {
-    await editor.insertSnippet(
-      new vscode.SnippetString("*${TM_SELECTED_TEXT}*$0"),
-      range
-    );
+    let snippet = markdownChar + "${TM_SELECTED_TEXT}" + markdownChar + "$0";
+    await editor.insertSnippet(new vscode.SnippetString(snippet), range);
   }
 }
 
@@ -85,28 +97,41 @@ async function removeEmphasis(range) {
 
 async function toggleStrongEmphasis() {
   const editor = vscode.window.activeTextEditor;
-  const wordRegex = /\**\w+\**/;
+  const markdownChar = config.getEmphasisCharacter();
+
+  let wordRegex = /\**\w+\**/;
+  if (markdownChar === "_") {
+    wordRegex = /_*\w+_*/;
+  }
   const range = getWordRange(wordRegex);
+
   const text = editor.document.getText(range);
-  const markedDown = /^\*{2}.*\*{2}$/.test(text);
+  let regexString = /^\*{2}.*\*{2}$/;
+  if (markdownChar === "_") {
+    regexString = /^_{2}.*_{2}$/;
+  }
+  const markedDown = regexString.test(text);
 
   if (markedDown) {
     await removeStrongEmphasis(range);
   } else {
-    await addStrongEmphasis(range);
+    await addStrongEmphasis(markdownChar, range);
   }
 }
 
-async function addStrongEmphasis(range) {
+async function addStrongEmphasis(markdownChar, range) {
   const editor = vscode.window.activeTextEditor;
 
   if (range.isEmpty) {
-    await editor.insertSnippet(new vscode.SnippetString("**$1**$0"), range);
+    let snippet = markdownChar.repeat(2) + "$1" + markdownChar.repeat(2) + "$0";
+    await editor.insertSnippet(new vscode.SnippetString(snippet), range);
   } else {
-    await editor.insertSnippet(
-      new vscode.SnippetString("**${TM_SELECTED_TEXT}**$0"),
-      range
-    );
+    let snippet =
+      markdownChar.repeat(2) +
+      "${TM_SELECTED_TEXT}" +
+      markdownChar.repeat(2) +
+      "$0";
+    await editor.insertSnippet(new vscode.SnippetString(snippet), range);
   }
 }
 
@@ -300,20 +325,27 @@ async function toggleOrderedList() {
 
 async function addOrderedList(range) {
   const editor = vscode.window.activeTextEditor;
-  const text = editor.document.getText(range);
-  const endOfLine = getEndOfLine();
-  let newLines = [];
 
-  let lines = text.split(endOfLine);
+  if (range.isEmpty) {
+    await editor.edit((textEdit) => {
+      textEdit.insert(range.start, "1. ");
+    });
+  } else {
+    const text = editor.document.getText(range);
+    const endOfLine = getEndOfLine();
+    let newLines = [];
 
-  lines.forEach((line, i) => {
-    newLines[i] = `1. ${line}`;
-  });
-  let newText = newLines.join(endOfLine);
+    let lines = text.split(endOfLine);
 
-  await editor.edit((textEdit) => {
-    textEdit.replace(range, newText);
-  });
+    lines.forEach((line, i) => {
+      newLines[i] = `1. ${line}`;
+    });
+    let newText = newLines.join(endOfLine);
+
+    await editor.edit((textEdit) => {
+      textEdit.replace(range, newText);
+    });
+  }
 }
 
 async function removeOrderedList(range) {
@@ -340,41 +372,64 @@ async function toggleUnorderedList() {
   const text = editor.document.getText(range);
 
   // eslint-disable-next-line node/no-unsupported-features/es-syntax
-  let markedDown = /^-\s.*/gm.test(text);
+  let markdownChar = config.getUnorderedListCharacter();
+  let regexString = `^${markdownChar}\\s.*`;
+  if (markdownChar === "+" || markdownChar === "*") {
+    // character must be escaped
+    regexString = "^\\" + markdownChar + "\\s.*";
+  }
+
+  let regex = new RegExp(regexString, "gm");
+  let markedDown = regex.test(text);
 
   if (markedDown) {
-    await removeUnorderedList(range);
+    if (markdown.isHorizontalRule(text) === false) {
+      await removeUnorderedList(markdownChar, range);
+    }
   } else {
-    await addUnorderedList(range);
+    await addUnorderedList(markdownChar, range);
   }
 }
 
-async function addUnorderedList(range) {
+async function addUnorderedList(markdownChar, range) {
   const editor = vscode.window.activeTextEditor;
-  const text = editor.document.getText(range);
-  const endOfLine = getEndOfLine();
-  let newLines = [];
 
-  let lines = text.split(endOfLine);
-  lines.forEach((line, i) => {
-    newLines[i] = `- ${line}`;
-  });
-  let newText = newLines.join(endOfLine);
+  if (range.isEmpty) {
+    await editor.edit((textEdit) => {
+      textEdit.insert(range.start, `${markdownChar} `);
+    });
+  } else {
+    const text = editor.document.getText(range);
+    const endOfLine = getEndOfLine();
+    let newLines = [];
 
-  await editor.edit((textEdit) => {
-    textEdit.replace(range, newText);
-  });
+    let lines = text.split(endOfLine);
+    lines.forEach((line, i) => {
+      newLines[i] = `${markdownChar} ${line}`;
+    });
+    let newText = newLines.join(endOfLine);
+
+    await editor.edit((textEdit) => {
+      textEdit.replace(range, newText);
+    });
+  }
 }
 
-async function removeUnorderedList(range) {
+async function removeUnorderedList(markdownChar, range) {
   const editor = vscode.window.activeTextEditor;
   const text = editor.document.getText(range);
   const endOfLine = getEndOfLine();
   let newLines = [];
 
   let lines = text.split(endOfLine);
+  let regexString = `^${markdownChar}\\s`;
+  if (markdownChar === "+" || markdownChar === "*") {
+    // must be escaped
+    regexString = "^\\" + markdownChar + "\\s";
+  }
+
   lines.forEach((line, i) => {
-    newLines[i] = line.replace(/^-\s/, "");
+    newLines[i] = line.replace(new RegExp(regexString), "");
   });
   let newText = newLines.join(endOfLine);
 
