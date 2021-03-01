@@ -7,6 +7,7 @@
 ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/robole.marky-edit?logo=visual-studio-code&color=blue)
 ![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/robole.marky-edit?logo=visual-studio-code&color=blue)
 ![Built with](https://img.shields.io/static/v1?label=built%20with&message=good%20vibrations%20%26%20javascript&color=violet)
+[![Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-$4-orange?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/robole)
 
 ![demo of commands](/img/screenshots/demo.gif)
 
@@ -24,7 +25,7 @@
 
 ## Commands
 
-It's important to know what a command will do to the text *and* the cursor when it is executed, so that the editing experience feels natural.
+To have a natural editing experience a command should add edit the text *and* offer control of the cursor to complete the text fragment.
 
 I clearly outline what the commands do in the subsections below.
 
