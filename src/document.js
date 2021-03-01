@@ -498,7 +498,9 @@ async function toggleLink() {
 async function addLink(range) {
   const editor = vscode.window.activeTextEditor;
   await editor.insertSnippet(
-    new vscode.SnippetString("[${TM_SELECTED_TEXT:${1:text}}](${2:link})$0"),
+    new vscode.SnippetString(
+      "[${TM_SELECTED_TEXT:${1:text}}](${2:${CLIPBOARD:href}})$0"
+    ),
     range
   );
 }

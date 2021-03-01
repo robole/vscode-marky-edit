@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2020-03-02
+
+## Added
+
+- Github action to publish to marketplaces.
+- Added task to *.vscode/tasks.json* to automatically run webpack when opening the project.
+
+## Changed
+
+- For the command `marky-edit.toggleLink`, take the value from the clipboard as the href.
+
+## Fixed
+
+- Commands were not showing up in the Commmand Palette. The`editorTextFocus` context no long works in the `enablement` property for commands in the extension manifest. 
+
 ## [0.2.0] - 2020-09-12
 
 ## Added

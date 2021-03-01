@@ -5,9 +5,9 @@
   "author": {
     "name": "Rob O'Leary"
   },
-  "description": "Toggle-style editing for Markdown.",
+  "description": "Toggle-style editing for Markdown documents.",
   "icon": "img/logo.png",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "engines": {
     "vscode": "^1.0.0",
     "node": ">=12.0.0"
@@ -46,87 +46,87 @@
       {
         "command": "marky-edit.toggleStrongEmphasis",
         "title": "Marky Edit: Toggle Strong Emphasis (Bold)",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleEmphasis",
         "title": "Marky Edit: Toggle Emphasis (Italic)",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleQuote",
         "title": "Marky Edit: Toggle Quote",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleInlineCode",
         "title": "Marky Edit: Toggle Inline Code",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleCodeBlock",
         "title": "Marky Edit: Toggle Fenced Code Block",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHeading1",
         "title": "Marky Edit: Toggle Heading 1",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHeading2",
         "title": "Marky Edit: Toggle Heading 2",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHeading3",
         "title": "Marky Edit: Toggle Heading 3",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHeading4",
         "title": "Marky Edit: Toggle Heading 4",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHeading5",
         "title": "Marky Edit: Toggle Heading 5",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHeading6",
         "title": "Marky Edit: Toggle Heading 6",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleOrderedList",
         "title": "Marky Edit: Toggle Ordered List (Numbered List)",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleUnorderedList",
         "title": "Marky Edit: Toggle Unordered List (Bulleted List)",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleLink",
         "title": "Marky Edit: Toggle Link",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleImage",
         "title": "Marky Edit: Toggle Image",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleHorizontalRule",
         "title": "Marky Edit: Toggle Thematic Break (Horizontal Rule)",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       },
       {
         "command": "marky-edit.toggleDelete",
         "title": "Marky Edit: Toggle Delete (Strikethrough)",
-        "enablement": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "enablement": "!editorReadonly && editorLangId == markdown"
       }
     ],
     "configuration": {
@@ -159,13 +159,13 @@
         "key": "ctrl+b",
         "mac": "cmd+b",
         "command": "marky-edit.toggleStrongEmphasis",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+        "when": "!editorReadonly && editorLangId == markdown"
       },
       {
         "key": "ctrl+i",
         "mac": "cmd+i",
         "command": "marky-edit.toggleEmphasis",
-        "when": "editorTextFocus && !editorReadonly &&editorLangId == markdown"
+        "when": "!editorReadonly &&editorLangId == markdown"
       }
     ]
   },
