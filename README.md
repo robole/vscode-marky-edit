@@ -1,35 +1,37 @@
-# Marky Edit
+<h1 align="center">
+  <br>
+    <img align="center" src="img/logo.png" width="200">
+  <br>
+	<br>
+  Marky Edit
+  <br>
+  <br>
+</h1>
+<h4 align="center">Toggle-style editing for Markdown documents</h4>
 
-![Extension file size in bytes](https://img.shields.io/static/v1?logo=visual-studio-code&label=made%20for&message=VS%20Code&color=0000ff)
-![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/robole.marky-edit?logo=visual-studio-code&color=ffa500)
-![Extension file size in bytes](https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=25KB&color=008000)
-![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/robole.marky-edit?logo=visual-studio-code&color=yellow)
-![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/robole.marky-edit?logo=visual-studio-code&color=blue)
-![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/robole.marky-edit?logo=visual-studio-code&color=blue)
-![Built with](https://img.shields.io/static/v1?label=built%20with&message=good%20vibrations%20%26%20javascript&color=violet)
-[![Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-$4-orange?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/robole)
+<p align="center">
+<img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=made%20for&message=VS%20Code&color=0000ff" alt="Made for VSCode">
+<img src="https://img.shields.io/visual-studio-marketplace/v/robole.marky-edit?logo=visual-studio-code&color=ffa500" alt="Visual Studio Marketplace Version">
+<img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=40KB&color=008000"
+alt="Extension file size in bytes">
+<img src="https://img.shields.io/visual-studio-marketplace/r/robole.marky-edit?logo=visual-studio-code&color=yellow" alt="Visual Studio Marketplace Rating">
+<img src="https://img.shields.io/visual-studio-marketplace/d/robole.marky-edit?logo=visual-studio-code&color=blue" alt="downloads"/>
+<img src="https://img.shields.io/visual-studio-marketplace/i/robole.marky-edit?logo=visual-studio-code&color=blue" alt="installs"/>
+<img src="https://img.shields.io/static/v1?label=built%20with&message=good%20vibrations%20%26%20javascript&color=violet" alt="Built with carrot juice and javascript"/>
+<a href="https://www.buymeacoffee.com/robole"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-$4-orange?logo=buy-me-a-coffee" alt="Buy me a coffee"></a>
+</p>
 
-![demo of commands](/img/screenshots/demo.gif)
+Toggle-style editing offers a more natural editing experience. It enables you to mark or unmark text as you type.
 
-<!-- TOC -->
-**Table of Contents**
-- [Commands](#commands)
-	- [Command List](#command-list)
-	- [Inline Commands](#inline-commands)
-	- [Line Commands](#line-commands)
-	- [Block Commands](#block-commands)
-- [Keyboard Shortcuts](#keyboard-shortcuts)
-- [Features Under Consideration](#features-under-consideration)
-- [Installation](#installation)
-<!-- /TOC -->
+![toggleStrongEmphasis demo](img/screenshots/toggleStrong.gif)
 
-## Commands
+It enables you to insert markdown fragments as snippets for simple completion.
 
-To have a natural editing experience a command should add edit the text *and* offer control of the cursor to complete the text fragment.
+![toggleCodeBlock demo](img/screenshots/toggleCodeBlock.gif)
 
-I clearly outline what the commands do in the subsections below.
+Together this helps you maintain control of the cursor and avoid losing your place while you write.
 
-### Command List
+### Commands
 
 The commands in the table below can be run from the Command Palette (`Ctrl+Shift+P`).
 
@@ -55,11 +57,11 @@ The commands in the table below can be run from the Command Palette (`Ctrl+Shift
 
 ### Inline Commands
 
-The table and GIF below demonstrate the command `marky-edit.toggleStrongEmphasis` for different scenarios. This pattern of behaviour is followed by all inline commands.
+Inline commands target a fragment within a line.
 
-![Strong empahsis demo](/img/screenshots/strong-emphasis.gif)
+The table below demonstrates how the command `marky-edit.toggleStrongEmphasis` behaves for different scenarios. This pattern of behaviour is followed by all inline commands.
 
-![Inline commands](/img/marky-edit-inline.png)
+![Inline commands](img/toggleStrongEmphasisScenarios.png)
 
 The inline markdown commands are:
 - `marky-edit.toggleStrongEmphasis`
@@ -70,7 +72,7 @@ The inline markdown commands are:
 - `marky-edit.toggleLink`
 
 There are 2 points worth noting:
-1. If there is no selection, it will insert a snippet. This enables you to navigate through the entry with tabstops (see item 2 in table), so that you can create a strongly emphasized word (or phrase) without making a selection or backtracking.
+1. If there is no selection, it will insert a snippet. This enables you to navigate through the entry with tabstops (see item 2 in table).
 1. If there is no selection but it is within the boundary of a word, it will perform the edit command on that word (see item 3 and 5 in the table).
 
 There is *one exception* to this, for the commands `marky-edit.toggleLink` and `marky-edit.toggleImage`, when you want to remove the markdown you have to make a complete selection like item 5 in the table. Item 4 in the table does *not* apply to these commands. It is more likely that you would delete the entire text fragment, rather than just remove the markdown!
@@ -79,9 +81,7 @@ There is *one exception* to this, for the commands `marky-edit.toggleLink` and `
 
 Line commands apply to an entire line.
 
-![line commands demo](/img/screenshots/line-commands.gif)
-
-If there is text on the current line, it will be overwritten.
+![toggleHeading1 demo](img/screenshots/toggleHeading1.gif)
 
 The line commands are:
 - `marky-edit.toggleHorizontalRule`
@@ -92,11 +92,13 @@ The line commands are:
 - `marky-edit.toggleHeading5`
 - `marky-edit.toggleHeading6`
 
+If there is text on the current line and the command is execute, the existing text will be overwritten.
+
 ### Block Commands
 
 Block commands perform multi-line edits.
 
-![list demo](img/screenshots/list.gif)
+![toggleCodeBlock demo](img/screenshots/toggleOrderedList.gif)
 
 The block commands are:
 - `marky-edit.toggleCodeBlock`
@@ -105,16 +107,14 @@ The block commands are:
 
 ## Keyboard Shortcuts
 
-I chose only to add shortcuts for emphasis and strong emphasis. I don't think it is a good idea to decide all of these settings for others.
+I chose only to add shortcuts for emphasis and strong emphasis. I don't think it is a good idea to decide all of these settings for others, so I did not add any more!
 
 | Command                         | Shortcut                                 | When                                                               |
 |---------------------------------|--------------------------------------------|--------------------------------------------------------------------|
 | marky-edit.toggleEmphasis       | Mac: `Cmd + I` <br> Windows: `Ctrl + I`<br>Linux: `Ctrl + I`| editorTextFocus && !editorReadonly && editorLangId ==   markdown |
 | marky-edit.toggleStrongEmphasis | Mac: `Cmd + B` <br> Windows: `Ctrl + B`<br> Linux: `Ctrl + B` | editorTextFocus && !editorReadonly && editorLangId ==   markdown |
 
-If you want to add more shortcuts for the extension commands, you can open the JSON file for Keyboard Shortcuts (by searching for `Preferences: Open Keyboard Shortcuts (JSON)` in the Command Palette), and add them in. The Keyboard Shortcuts UI only allows editing of existing shortcuts. 😕
-
-To add a shortcut, add an object like below:
+I would recommend adding shortcuts for the other commands to be able to edit everything with the keyboard. To do this, you open the JSON file for Keyboard Shortcuts with the command `Preferences: Open Keyboard Shortcuts (JSON)`. To add a shortcut, add an object like below:
 
 ```JSON
 {
@@ -125,12 +125,16 @@ To add a shortcut, add an object like below:
 }
 ```
 
-I recommend using the same *when* clause as above. The *key* property creates a shortcut for all Operating Systems. The *mac*, *windows*, and *linux* properties allow you to create OS-specific shortcuts. You can read more about shortcuts in the [official docs](https://code.visualstudio.com/docs/getstarted/keybindings).
+The *key* property creates a shortcut for all Operating Systems. The *mac*, *windows*, and *linux* properties allow you to create OS-specific shortcuts.
+
+I recommend using the same *when* clause as above.
+
+You can read more about shortcuts in the [official docs](https://code.visualstudio.com/docs/getstarted/keybindings).
 
 ## Features Under Consideration
 
 1. Update the "word pattern", which identifies what is a considered a word for syntax highlighting and selection.
-1. Add text decoration for strong emphasis, and delete.
+1. Add text decoration for strong emphasis and delete.
 1. Add extended syntax support for tables and task lists.
 1. Add heading level increase and decrease commands.
 1. List editing. Add new item when hitting Enter.
@@ -138,6 +142,6 @@ I recommend using the same *when* clause as above. The *key* property creates a 
 
 ## Installation
 
+1. It is listed in the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=robole.marky-edit) and [Open VSX Marketplace](https://open-vsx.org/extension/robole/marky-edit) where you can download or install it directly.
 1. Inside VS Code: Type `Ctrl+P`, write `ext install robole.marky-edit` in the text field, and hit `Enter`.
 1. From the Command-line: Run the command `code --install-extension robole.marky-edit`.
-1. From the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=robole.marky-edit): Click the _Install_ button.

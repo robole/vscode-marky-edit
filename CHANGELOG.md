@@ -4,9 +4,17 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2020-05-07
+
+### Changed
+
+- Simplified README.md.
+
 ## [0.4.0] - 2020-03-02
 
-### Added new badges
+### Added
+
+- Added new badges
 
 ## [0.3.0] - 2020-03-02
 
@@ -21,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Commands were not showing up in the Commmand Palette. The`editorTextFocus` context no long works in the `enablement` property for commands in the extension manifest. 
+- Commands were not showing up in the Commmand Palette. The`editorTextFocus` context no long works in the `enablement` property for commands in the extension manifest.
 
 ## [0.2.0] - 2020-09-12
 
