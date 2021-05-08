@@ -4,11 +4,16 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.5.0] - 2020-05-07
+## [0.5.0] - 2020-05-08
 
 ### Changed
 
 - Simplified README.md.
+
+### Fixed
+
+- Fix secrets in GitHub repo for publishing to marketplaces.
+- Exclude more files from VSIX via *.vscodeignore*.
 
 ## [0.4.0] - 2020-03-02
 

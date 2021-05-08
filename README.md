@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img align="center" src="img/logo.png" width="200">
+  <img align="center" src="img/logo.png" width="200">
   <br>
 	<br>
   Marky Edit
@@ -12,13 +12,13 @@
 <p align="center">
 <img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=made%20for&message=VS%20Code&color=0000ff" alt="Made for VSCode">
 <img src="https://img.shields.io/visual-studio-marketplace/v/robole.marky-edit?logo=visual-studio-code&color=ffa500" alt="Visual Studio Marketplace Version">
-<img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=40KB&color=008000"
+<img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=22KB&color=008000"
 alt="Extension file size in bytes">
 <img src="https://img.shields.io/visual-studio-marketplace/r/robole.marky-edit?logo=visual-studio-code&color=yellow" alt="Visual Studio Marketplace Rating">
 <img src="https://img.shields.io/visual-studio-marketplace/d/robole.marky-edit?logo=visual-studio-code&color=blue" alt="downloads"/>
 <img src="https://img.shields.io/visual-studio-marketplace/i/robole.marky-edit?logo=visual-studio-code&color=blue" alt="installs"/>
 <img src="https://img.shields.io/static/v1?label=built%20with&message=good%20vibrations%20%26%20javascript&color=violet" alt="Built with carrot juice and javascript"/>
-<a href="https://www.buymeacoffee.com/robole"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-$4-orange?logo=buy-me-a-coffee" alt="Buy me a coffee"></a>
+<a href="https://ko-fi.com/roboleary"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-$4-orange?logo=buy-me-a-coffee" alt="Buy me a coffee"></a>
 </p>
 
 Toggle-style editing offers a more natural editing experience. It enables you to mark or unmark text as you type.
@@ -131,17 +131,18 @@ I recommend using the same *when* clause as above.
 
 You can read more about shortcuts in the [official docs](https://code.visualstudio.com/docs/getstarted/keybindings).
 
-## Features Under Consideration
-
-1. Update the "word pattern", which identifies what is a considered a word for syntax highlighting and selection.
-1. Add text decoration for strong emphasis and delete.
-1. Add extended syntax support for tables and task lists.
-1. Add heading level increase and decrease commands.
-1. List editing. Add new item when hitting Enter.
-1. Increase selection expansion for links and images, so that you do not have make the selection yourself to toggle it. Is this something that would be used?
-
 ## Installation
 
-1. It is listed in the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=robole.marky-edit) and [Open VSX Marketplace](https://open-vsx.org/extension/robole/marky-edit) where you can download or install it directly.
+1. It is listed in the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=robole.marky-edit) and [Open VSX Marketplace](https://open-vsx.org/extension/robole/marky-edit) where you can download or install it directly.
 1. Inside VS Code: Type `Ctrl+P`, write `ext install robole.marky-edit` in the text field, and hit `Enter`.
 1. From the Command-line: Run the command `code --install-extension robole.marky-edit`.
+
+## Show gratitude
+
+If you are happy with the extension, please star the repo, and leave a review to help others find it. 🌟
+
+You can [buy me a coffee](https://ko-fi.com/roboleary) if you would like to support me in my quest to make more great open-source software. ☕🙏
+
+## Contribute
+
+If you have a suggestion or find a bug, please file an issue.
