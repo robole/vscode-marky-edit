@@ -177,7 +177,7 @@
     "lint:fix": "eslint --fix src",
     "format": "npx prettier --write .",
     "test": "node ./test/runTest.js",
-    "webpack": "webpack --mode development --watch",
+    "dev": "webpack --mode development --watch",
     "vscode:prepublish": "webpack --mode production",
     "build": "vsce package ."
   },
