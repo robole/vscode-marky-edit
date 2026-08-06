@@ -8,18 +8,7 @@
   <br>
 </h1>
 <h4 align="center">Toggle-style editing for Markdown documents</h4>
-
-<p align="center">
-<img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=made%20for&message=VS%20Code&color=0000ff" alt="Made for VSCode">
-<img src="https://img.shields.io/visual-studio-marketplace/v/robole.marky-edit?logo=visual-studio-code&color=ffa500" alt="Visual Studio Marketplace Version">
-<img src="https://img.shields.io/static/v1?logo=visual-studio-code&label=size&message=22KB&color=008000"
-alt="Extension file size in bytes">
-<img src="https://img.shields.io/visual-studio-marketplace/r/robole.marky-edit?logo=visual-studio-code&color=yellow" alt="Visual Studio Marketplace Rating">
-<img src="https://img.shields.io/visual-studio-marketplace/d/robole.marky-edit?logo=visual-studio-code&color=blue" alt="downloads"/>
-<img src="https://img.shields.io/visual-studio-marketplace/i/robole.marky-edit?logo=visual-studio-code&color=blue" alt="installs"/>
-<img src="https://img.shields.io/static/v1?label=built%20with&message=good%20vibrations%20%26%20javascript&color=violet" alt="Built with carrot juice and javascript"/>
-<a href="https://ko-fi.com/roboleary"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-$4-orange?logo=buy-me-a-coffee" alt="Buy me a coffee"></a>
-</p>
+<br>
 
 Toggle-style editing offers a more natural editing experience. It enables you to mark or unmark text as you type.
 
@@ -130,12 +119,6 @@ The *key* property creates a shortcut for all Operating Systems. The *mac*, *win
 I recommend using the same *when* clause as above.
 
 You can read more about shortcuts in the [official docs](https://code.visualstudio.com/docs/getstarted/keybindings).
-
-## Installation
-
-1. It is listed in the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=robole.marky-edit) and [Open VSX Marketplace](https://open-vsx.org/extension/robole/marky-edit) where you can download or install it directly.
-1. Inside VS Code: Type `Ctrl+P`, write `ext install robole.marky-edit` in the text field, and hit `Enter`.
-1. From the Command-line: Run the command `code --install-extension robole.marky-edit`.
 
 ## Show gratitude
 

@@ -4,9 +4,19 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-08-05
+
+### Changed
+
+- Use esbuild instead of webpack for bundling.
+
+### Removed
+
+- Remove badges and installation sections from the README.
+
 ## [0.7.0] - 2022-06-29
 
-## Changed
+### Changed
 
 - Update to use latest version of GitHub Action (v1).
 - Updated *.eslintrc.json* to use *eslint-config-node-roboleary* config.
